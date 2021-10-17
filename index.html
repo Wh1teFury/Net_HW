@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <!-- <link rel="stylesheet/less" type="text/css" href="style.less"> -->
+    <!-- <script src="less.js\dist\less.js" type="text/javascript"></script> -->
+    <title>TODOList</title>
+</head>
+
+<body>
+    <div class="header-wrapper">
+        <div class="container">
+            <div class="header">
+                <div class="header-logo">
+                    <img src="img/logo.png" alt="logo">
+                    <h1>TODOList</h1>
+                </div>
+                <div class="header-menu">
+                    <div class="menu-search">
+                        <input type="text" class="menu-search__text" placeholder="Поиск...">
+                        <button type="button" class="menu-search__btn"><span class="material-icons-outlined icon-search">search</span></button>
+                    </div>
+                    <ul class="menu-profile">
+                        <li>Вход</li>
+                        <li>Регистрация</li>
+                    </ul>
+                    <div class="profile-dropdown">
+                        <button type="button"><span class="material-icons-outlined icon-profile">account_circle</span></button>                                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-wrapper">
+        <div class="container">
+            <div class="content">
+                <div class="content__sidebar">
+                    <div class="sidebar-section">
+                        <div class="sidebar-section__project">
+                            <button type="button" class="sidebar-section__project__project__btn"><span
+                                    class="material-icons-outlined icon-project">chevron_right</span>Проекты</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="content__task">
+                    <div class="task-header">
+                        <h1>Сегодня</h1>
+                        <small>Ср 13 окт</small>
+                        <div class="sort">
+                            <div class="sort-wrap">
+                                <div class="sort-btn">
+                                    <button type="button" class="sort-btn__sortdrop">Сортировать<span
+                                            class="material-icons-outlined icon-sort">sort</span>
+                                    </button>
+                                </div>
+                                <div class="sort-dropdown">
+                                    <ul class="dropdown-items">
+                                        <li><button type="button"><span
+                                                    class="material-icons-outlined">date_range</span>Сортировать по
+                                                сроку выполнения</button></li>
+                                        <li><button type="button"><span
+                                                    class="material-icons-outlined">flag</span>Сортировать по
+                                                приоретету</button></li>
+                                        <li><button type="button"><span
+                                                    class="material-icons-outlined">sort_by_alpha</span>Сортировать по
+                                                алфавиту</button></li>
+                                        <li><button type="button"><span
+                                                    class="material-icons-outlined">person</span>Сортировать по
+                                                исполнителю</button></li>
+                                        <li><button type="button"><span
+                                                    class="material-icons-outlined">settings</span>Пользовательская
+                                                сортировка</button></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="task-form">
+                        <button type="button" class="addform-btn"><span
+                                class="material-icons-outlined icon-addform">add</span>Добавить задание</button>
+                        <div class="form-container">
+                            <div class="form-task">
+                                <div class="form-section">
+                                    <form action="##">
+                                        <textarea class="form-section__name" placeholder="Название"></textarea>
+                                        <textarea class="form-section__description" placeholder="Описание"></textarea>
+                                    </form>
+                                    <div class="form-section__btn">
+                                        <button type="button" class="form-section__btn__priority"><span class="material-icons-outlined icon-priority" >flag</span></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-btn">
+                                <button type="button" class="form-btn__addtask">Добавить задачу</button>
+                                <button type="button" class="form-btn__canceltask">Отмена</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
