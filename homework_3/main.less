@@ -1,0 +1,62 @@
+@linear-gradient: linear-gradient(90deg, #00a49b,#026773,#092c4e);
+
+@spacing-small: 15px;
+@spacing-medium: 20px;
+@spacing-large: 30px;
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    min-height: 100vh;
+    background: @linear-gradient;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 30px;
+    width: 470px;
+    background: #fff;
+    border-radius: 10px;
+    padding: @spacing-medium @spacing-medium @spacing-large;
+
+    & textarea {
+        font-size: 15px;
+        font-weight: bold;
+        width: 100%;
+        height: 60px;
+        padding: @spacing-small;
+        border-radius: 5px;
+        outline: none;
+        resize: none;
+
+        &::-webkit-scrollbar {
+            width: 0;
+        }
+    }
+
+    & button {
+    font-size: 24px;
+    margin-top: @spacing-medium;
+    padding: @spacing-medium @spacing-medium;
+    background: @linear-gradient;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+}
+}
+
+
+
+
+
