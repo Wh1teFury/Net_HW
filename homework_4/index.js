@@ -2,32 +2,32 @@ function BinaryTree () {
     this.root = null;
 
     this.add = function (value) {
-        if (typeof value === 'number') {
-            if (!this.root) {
-                this.root = new TreeNode(value);
-            } else {
-                let node = this.root;
-                let newNode = new TreeNode(value);
-                while (node) {
-                    if (value > node.value) {
-                        if (!node.right) {
-                            break;
-                        }
-                        node = node.right;
-                    } else {
-                        if (!node.left) {
-                            break;
-                        }
-                        node = node.left;
+        if (!this.root) {
+            this.root = new TreeNode(value);            
+        } else {
+            let node = this.root;
+            let newNode = new TreeNode(value);
+            while (node) {
+                if (value > node.value) {
+                    if (!node.right) {
+                        break;
                     }
+                    node = node.right;
+                } else {
+                    if (!node.left) {
+                        break;
+                    }
+                    node = node.left;
                 }
+            } 
+            if (typeof node.value === typeof newNode.value) {         
                 if (value > node.value) {
                     node.right = newNode;
                 } else {
                     node.left = newNode;
                 }
             }
-        }
+        } 
     }
 
     // Обход в глубину
