@@ -1,9 +1,18 @@
 
 const obj1 = { property: "value" };
 const obj2 = {
-    property: "value",
+    property: "value123",
     nextLevel: {
-        secondProperty: "secondValue",
+        property: "secondValue",
+        thirdLevel: {
+            thirdProperty: "thirdValue"
+        }
+    }
+};
+const obj3 = {
+    property: "value124",
+    nextLevel: {
+        property: "secondValue",
         thirdLevel: {
             thirdProperty: "thirdValue"
         }
@@ -44,57 +53,62 @@ function Helper() {
 
         isEqual: {
             value: function (obj1, obj2) {
-                if ((this.isObject(obj1) === true) && (this.isObject(obj1) === true)) {
-                    const props1 = Object.getOwnPropertyNames(obj1);
-                    const props2 = Object.getOwnPropertyNames(obj2);
-                    if (props1.length !== props2.length) {
+                if ((this.isObject(obj1) === true) && (this.isObject(obj2) === true)) {
+                    const propsArray1 = JSON.stringify(obj1).replace(/[,:{}"]/gi, ' ').split(" ").filter((el)=>{return el !== ""});
+                    const propsArray2 = JSON.stringify(obj2).replace(/[,:{}"]/gi, ' ').split(" ").filter((el)=>{return el !== ""});            
+                    if (propsArray1.length !== propsArray2.length) {
                         return false;
-                    }
-
-                    for (let i = 0; i < props1.length; i += 1) {
-                        const prop = props1[i];
-                        const bothAreObjects = typeof (obj1[prop]) === 'object' && typeof (obj2[prop]) === 'object';
-
-                        if ((!bothAreObjects && (obj1[prop] !== obj2[prop]))
-                            || (bothAreObjects && !this.isEqual(obj1[prop], obj2[prop]))) {
+                    };            
+                    for (let i = 0; i < propsArray1.length; i += 1) {
+                        if (propsArray2.includes(propsArray1[i]) === false){
                             return false;
                         }
-                    } return true;
-
+                    };
+                    return true;
                 } return 'Ошибка, нужен объект';
-            }
+            } 
         },
 
         findValue: {
-            value: function (obj, key) {
-                if (this.isObject(obj) != true) {return "Ошибка, нужен объект"};
-                let result = "Ключ не найден";
-                isFindValue(obj, key);
-                function isFindValue(obj, key) {
-                    for (secKey in obj) {
-                        if (secKey === key) {
-                            result = `Ключ ${key}: значение ${obj[secKey]}`;    
-                        } else if ( typeof(obj[secKey]) === 'object' ) {
-                            isFindValue(obj[secKey], key);
+            value: function findValue (obj, key) {
+                if (this.isObject(obj) === true) {
+                    let result = "Ключ не найден";
+                    isFindValue (obj, key);
+                    function  isFindValue (obj, key) {   
+                        for (let prop in obj) {
+                            if (obj.hasOwnProperty(prop) && prop === key){
+                                result = `${key}: ${JSON.stringify(obj[prop])}`  ;
+                            } 
                         }
-                    }
-                }
-                return result;
+                        if (result === false) {
+                            for (let prop in obj) {
+                                if (typeof(obj[prop]) === 'object') {
+                                return findValue(obj[prop], key) 
+                                }
+                            }
+                        }
+                    }           
+                    return result;
+                } return 'Ошибка, нужен объект';    
             }
         },
 
         hasKey: {
             value: function (obj, key) {
-                if (this.isObject(obj) != true) {return "Ошибка, нужен объект"};
-                let result = false;
-                isHasKey(obj, key);
-                function isHasKey(obj, key) {
-                    for (let secKey in obj)
-                        if (!obj.hasOwnProperty(key) && typeof (obj[secKey]) === 'object') { isHasKey(obj[secKey], key); };
-                    if (obj.hasOwnProperty(key)) { result = true; }
-                }
-
-                return result;
+                if (this.isObject(obj) === true) {
+                    let result = false;
+                    isHasKey(obj, key);
+                    function isHasKey(obj, key) {
+                        for (let prop in obj) {
+                            if (!obj.hasOwnProperty(key) && typeof (obj[prop]) === 'object') { 
+                                isHasKey(obj[prop], key);
+                            } else if (obj.hasOwnProperty(key)) { 
+                                result = true;
+                            }
+                        }                   
+                    }
+                    return result;
+                } return "Ошибка, нужен объект";
             }
         }
 
@@ -104,11 +118,16 @@ function Helper() {
 const helper = new Helper();
 
 console.log (helper);
-console.log (helper.isObject(obj1));
-console.log (helper.isEmpty(obj1));
-console.log (helper.deepClone(obj2));
-console.log (helper.isEqual(obj1,obj2));
-console.log (helper.hasKey(obj2, 'thirdProperty' ));
-console.log (helper.findValue (obj2 , 'thirdProperty' ));
+console.log (helper.isObject(obj1));                             // true, object
+console.log (helper.isObject([]));                               // false, array
+console.log (helper.isEmpty(obj1));                              // false, not empty
+console.log (helper.isEmpty({}));                                // true, empty   
+console.log (helper.deepClone(obj2));                            // objClone
+console.log (helper.isEqual(obj2,obj2));                         // true
+console.log (helper.isEqual(obj2,obj3));                         // false
+console.log (helper.findValue (obj2 , 'property' ));             // property: "value123"
+console.log (helper.findValue (obj2 , 'roperty' ));              // Ключ не найден
+console.log (helper.hasKey(obj2, 'thirdProperty' ));             // true 
+console.log (helper.hasKey(obj2, 'fifthProperty' ));             // false
 
 
