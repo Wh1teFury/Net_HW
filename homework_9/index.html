@@ -16,6 +16,15 @@
 </head>
 
 <body>
+    <div id="video-wrap" class="container hide">
+        <div class="video-wrapper">
+            <div id="block" class="block-video">
+                <iframe width="1000" height="500" src="https://www.youtube.com/embed/1T_du9AFOvo" frameborder="0"
+                    allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
     <div class="header-wrapper">
         <div class="container">
             <div class="header">
@@ -61,21 +70,21 @@
                                             class="material-icons-outlined icon-sort">sort</span>
                                     </button>
                                 </div>
-                                <div id="sort-menu" class="sort-dropdown">
+                                <div id="sort-menu" class="sort-dropdown hide">
                                     <ul class="dropdown-items">
-                                        <li><button type="button"><span
+                                        <li><button id="show-video" type="button" class="items-sort"><span
                                                     class="material-icons-outlined">date_range</span>Сортировать по
                                                 сроку выполнения</button></li>
-                                        <li><button type="button"><span
+                                        <li><button type="button" class="items-sort"><span
                                                     class="material-icons-outlined">flag</span>Сортировать по
                                                 приоретету</button></li>
-                                        <li><button type="button"><span
+                                        <li><button type="button" class="items-sort"><span
                                                     class="material-icons-outlined">sort_by_alpha</span>Сортировать по
                                                 алфавиту</button></li>
-                                        <li><button type="button"><span
+                                        <li><button type="button" class="items-sort"><span
                                                     class="material-icons-outlined">person</span>Сортировать по
                                                 исполнителю</button></li>
-                                        <li><button type="button"><span
+                                        <li><button type="button" class="items-sort"><span
                                                     class="material-icons-outlined">settings</span>Пользовательская
                                                 сортировка</button></li>
                                     </ul>
@@ -85,7 +94,7 @@
                     </div>
                     <div class="task-form">
                         <button id="task-add"  type="button" class="addform-btn"><span class="material-icons-outlined icon-addform">add</span>Добавить задание</button>
-                        <div id="form-block" class="form-container">
+                        <div id="form-block" class="form-container hide">
                             <div class="form-task">
                                 <div class="form-section">
                                     <form action="##">
