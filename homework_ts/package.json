@@ -1,0 +1,31 @@
+{
+  "name": "typescript",
+  "version": "1.0.0",
+  "main": "tree.js",
+  "type": "module",
+  "scripts": {
+    "eslint": "eslint \"./app/**/*.ts\"",
+    "buildDev": " gulp --gulpfile ./gulp/gulpfileBrow.cjs",
+    "buildAndStart": "rimraf ./dist && gulp --gulpfile ./gulp/gulpfile.cjs"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.10",
+    "@typescript-eslint/eslint-plugin": "5.4.0",
+    "@typescript-eslint/parser": "5.4.0",
+    "browser-sync": "^2.27.7",
+    "browserify": "^17.0.0",
+    "eslint": "8.3.0",
+    "gulp": "^4.0.2",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-typescript": "5.0.1",
+    "gulp-uglify": "^3.0.2",
+    "gulp-util": "^3.0.8",
+    "rimraf": "3.0.2",
+    "ts-node": "10.4.0",
+    "tsify": "^5.0.4",
+    "typescript": "4.4.4",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0",
+    "watchify": "^4.0.0"
+  }
+}
