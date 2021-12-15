@@ -1,0 +1,57 @@
+
+<div class="form-wrap">
+  <div class="checkred">
+    <div class="search">
+      <label>Search:</label>
+      <input type="text" [(ngModel)] ="textInput" (keyup)="isSearch(textInput)">
+    </div>
+    <div class="date" >
+      <label>Filter:</label>
+      <input type="date" [(ngModel)] ="inputDate">
+    </div>
+    <div class="gpa">
+      <input id="isgpa" type="range" step="1" min="-1" max="5" [(ngModel)] ="inputGPA"/>     
+    </div>
+    <div class="sort">
+      <input type="checkbox" class="checkbox" id="box" [(ngModel)]="isRed" />
+      <label for="box"></label>
+    </div>
+  </div>
+</div>
+<div class="table-wrap">
+  <table>
+    <thead>
+        <tr>
+            <th (click) = 'isSort("firstName")'>First Name</th>
+            <th (click) = 'isSort("lastName")'>Last Name</th>
+            <th (click) = 'isSort("middleName")'>Middle Name</th>
+            <th (click) = 'isSort("birthday")'>Birthday</th>
+            <th (click) = 'isSort("GPA")'>GPA</th>
+            <th class="del"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let students of isFilter(inputDate, inputGPA); let i=index" [ngClass] = "{'isredrow': students.GPA < 3 && isRed,
+                                                                                  'isgreenrow': searchStudent.includes(students.id)}">
+            <td>{{students.firstName}}</td>
+            <td>{{students.lastName}}</td>
+            <td>{{students.middleName}}</td>
+            <td>{{students.birthday}}</td>
+            <td>{{students.GPA}}</td>
+            <td class = "hide" [ngClass] = "{'nohide': searchStudent.includes(students.id)}">
+              <button class="button" type="button" (click)="showPopUp()">Delete</button>
+              <div class="popUp" [ngClass] = "show ? 'visible' : 'invisible'">
+                <p>Are you sure that you want to remove these items?</p>
+                <div>
+                  <button type="button" (click)="isDeleteStudent(i)">Yes</button>
+                  <button type="button" (click)="showPopUp()">No</button>
+                </div>
+              </div>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
