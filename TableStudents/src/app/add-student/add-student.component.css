@@ -1,0 +1,264 @@
+.content {
+  display: flex;
+  margin: 20px auto;
+  flex-direction: column;
+  align-items: left;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.form-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+.form-group {
+  display: flex;
+}
+.form-group div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.form-group div .warning {
+  height: 40px;
+  align-items: center;
+}
+.form-birthday {
+  display: flex;
+}
+.form-birthday div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.form-birthday div .form-day {
+  border-radius: 10px;
+  border: 1px solid #eee;
+  background-color: #fafafa;
+  width: 190px;
+  margin: 0 8px;
+  padding: 3px;
+  line-height: 24px;
+  font-size: 16px;
+}
+.form-birthday div .form-gpa {
+  border-radius: 10px;
+  border: 1px solid #eee;
+  background-color: #fafafa;
+  width: 100px;
+  margin: 0 8px 10px;
+  padding: 6px;
+  line-height: 24px;
+  font-size: 16px;
+}
+.form-birthday div .warning {
+  align-items: center;
+}
+.form-field {
+  border-radius: 10px;
+  border: 1px solid #eee;
+  background-color: #fafafa;
+  width: 200px;
+  margin: 0 8px 10px;
+  padding: 6px;
+  line-height: 24px;
+  font-size: 16px;
+}
+.button {
+  border-radius: 10px;
+  height: 38px;
+  width: 100px;
+  margin: 17px 8px 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 24px;
+}
+.error {
+  color: red;
+  font-size: small;
+}
+.table-wrap {
+  display: flex;
+  justify-content: left;
+}
+.table-wrap table {
+  width: 100%;
+  border: none;
+  margin-bottom: 20px;
+  border-spacing: 0px;
+  border-collapse: collapse;
+  z-index: 1;
+}
+.table-wrap table thead tr th {
+  font-weight: bold;
+  text-align: left;
+  border: none;
+  padding: 10px 15px;
+  background: #FFD700;
+  font-size: 16px;
+}
+.table-wrap table thead tr th:first-child {
+  border-radius: 8px 0 0 8px;
+}
+.table-wrap table thead tr th:last-child {
+  border-radius: 0 8px 8px 0;
+}
+.table-wrap table thead tr .del {
+  width: 50px;
+}
+.table-wrap table tbody td {
+  text-align: left;
+  border: none;
+  padding: 0px 15px;
+  font-size: 16px;
+  vertical-align: middle;
+}
+.table-wrap table tbody td:first-child {
+  border-radius: 8px 0 0 8px;
+}
+.table-wrap table tbody td:last-child {
+  border-radius: 0 8px 8px 0;
+}
+.table-wrap table tbody td .button {
+  margin-left: 10px;
+  width: 70px;
+  height: 30px;
+  background-color: #FFD700;
+  border: none;
+  border-radius: 10px;
+}
+.isredrow {
+  background: #fc3a3a;
+}
+.isgreenrow {
+  background: #6bff95;
+}
+.invisible {
+  display: none;
+}
+.visible {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: solid 1px black;
+  border-radius: 20px;
+}
+.popUp {
+  background: white;
+  padding: 5px;
+  width: 410px;
+  position: absolute;
+  z-index: 99999999;
+}
+.popUp p {
+  font-size: 18px;
+}
+.popUp div {
+  margin-top: 10px;
+}
+.popUp div button {
+  border: none;
+  border-radius: 10px;
+  background-color: #fc3a3a;
+  width: 70px;
+  height: 30px;
+}
+.popUp div button:last-child {
+  margin-left: 30px;
+  background-color: #6bff95;
+}
+.table-btn {
+  display: flex;
+  justify-content: space-between;
+}
+.editPopUp {
+  position: absolute;
+  z-index: 9999999;
+  margin-left: -923px;
+  margin-top: -63px;
+  height: 53px;
+  padding-top: 12px;
+  border: none;
+}
+.editPopUp .btn-edit {
+  margin-left: 19px;
+  margin-right: 29px;
+  width: 70px;
+  height: 30px;
+  background-color: red;
+  border: none;
+  border-radius: 10px;
+  margin-top: 5px;
+}
+#isgpa {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+.editform-container {
+  display: flex;
+  justify-content: center;
+}
+.form-group {
+  display: flex;
+}
+.form-group div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.form-group div .warnings {
+  height: 20px;
+  align-items: center;
+}
+.form-birthdays {
+  display: flex;
+}
+.form-birthdays div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.form-birthdays div .form-days {
+  border-radius: 10px;
+  border: 1px solid #eee;
+  background-color: #fafafa;
+  width: 160px;
+  margin-left: 56px;
+  padding: 5px;
+  padding-right: 6px;
+  line-height: 24px;
+  font-size: 16px;
+}
+.form-birthdays div .form-gpas {
+  border-radius: 10px;
+  border: 1px solid #eee;
+  background-color: #fafafa;
+  width: 90px;
+  margin-left: 11px;
+  padding: 6px;
+  line-height: 24px;
+  font-size: 16px;
+}
+.form-birthdays div .warning {
+  align-items: center;
+}
+.form-fields {
+  border-radius: 10px;
+  border: 1px solid #eee;
+  background-color: #fafafa;
+  width: 170px;
+  margin-right: -5px;
+  margin-left: 11px;
+  padding: 6px;
+  line-height: 24px;
+  font-size: 16px;
+}
+.filter-table {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.filter-gpa {
+  display: flex;
+}

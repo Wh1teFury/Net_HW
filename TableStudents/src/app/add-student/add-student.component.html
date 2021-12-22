@@ -1,0 +1,209 @@
+<div class="content">
+  <h2>Add students</h2>
+  <form novalidate [formGroup] = "studentForm" (ngSubmit) = "onSubmit()">
+    <div class="form-container">
+      <div formGroupName = "student" class="form-group">
+        <div>
+          <label for="">Name</label>
+          <input type="text" class="form-field" formControlName="name">
+          <div class="warning">
+            <p *ngIf="studentForm.get('student.name')?.touched &&
+              studentForm.get('student.name')?.errors?.['required']" class="error">Name is required</p>
+            <p *ngIf="studentForm.get('student.name')?.touched &&
+              studentForm.get('student.name')?.errors?.['minlength']" class="error">Must be atleast 3 characters</p>
+            <p *ngIf="studentForm.get('student.name')?.touched &&
+              studentForm.get('student.name')?.errors?.['maxlength']" class="error">Must not exceed 12 characters</p>
+            <p *ngIf="studentForm.get('student.name')?.touched &&
+              studentForm.get('student.name')?.errors?.['pattern']" class="error">Must be only englisch/russian letters</p>
+            <p *ngIf="studentForm.get('student.name')?.touched &&
+              studentForm.get('student')?.errors?.['invalidSurname']" class="error">The name duplicates the surname</p>
+            <p *ngIf="studentForm.get('student.name')?.touched &&
+              studentForm.get('student')?.errors?.['invalidPatronymic']" class="error">The name duplicates the patronymic</p>
+          </div>
+        </div>
+        <div>
+          <label for="">Surname</label>
+          <input type="text" class="form-field" formControlName="surname">
+          <div class="warning">
+            <p *ngIf="studentForm.get('student.surname')?.touched &&
+              studentForm.get('student.surname')?.errors?.['required']" class="error">Surname is required</p>
+            <p *ngIf="studentForm.get('student.surname')?.touched &&
+              studentForm.get('student.surname')?.errors?.['minlength']" class="error">Must be atleast 3 characters</p>
+            <p *ngIf="studentForm.get('student.surname')?.touched &&
+              studentForm.get('student.surname')?.errors?.['maxlength']" class="error">Must not exceed 12 characters</p>
+            <p *ngIf="studentForm.get('student.surname')?.touched &&
+              studentForm.get('student.surname')?.errors?.['pattern']" class="error">Must be only englisch/russian letters</p>
+          </div>
+        </div>
+        <div>
+          <label for="">Patronymic</label>
+          <input type="text" class="form-field" formControlName="patronymic">
+          <div class="warning">
+            <p *ngIf="studentForm.get('student.patronymic')?.touched &&
+              studentForm.get('student.patronymic')?.errors?.['required']" class="error">Patronymic is required</p>
+            <p *ngIf="studentForm.get('student.patronymic')?.touched &&
+              studentForm.get('student.patronymic')?.errors?.['minlength']" class="error">Must be atleast 3 characters</p>
+            <p *ngIf="studentForm.get('student.patronymic')?.touched &&
+              studentForm.get('student.patronymic')?.errors?.['maxlength']" class="error">Must not exceed 12 characters</p>
+            <p *ngIf="studentForm.get('student.patronymic')?.touched &&
+              studentForm.get('student.patronymic')?.errors?.['pattern']" class="error">Must be only englisch/russian letters</p>
+          </div>
+        </div>
+      </div>
+      <div class="form-birthday"> 
+        <div>
+          <label for="">Birthday</label>
+          <input type="date" class="form-day" formControlName="birthday">
+          <div class="warning">
+            <p *ngIf="studentForm.get('birthday')?.touched &&
+              studentForm.get('birthday')?.errors?.['required']" class="error">Birthday is required</p>
+            <p *ngIf="studentForm.get('birthday')?.touched &&
+              studentForm.get('birthday')?.errors?.['invalidAge']" class="error">Must be atleast 10 years old</p>
+          </div>
+        </div>  
+        <div>
+          <label for="">GPA</label>
+          <input type="number" min="0" max="5" step="0.1" class="form-gpa" formControlName="GPA">
+          <div class="warning">
+            <p *ngIf="studentForm.get('GPA')?.touched &&
+              studentForm.get('GPA')?.errors?.['required']" class="error">GPA is required</p> 
+          </div>
+        </div>
+        <button class="button" type="submit" [disabled] = "studentForm.invalid">Add</button>
+      </div>
+    </div>
+  </form>
+  <div>
+    <div>
+      <form novalidate [formGroup]="filterTable">
+        <div class="filter-table">
+          <div>
+            <label>Filter by date:
+              <input type="date" class="form-field" formControlName="inputMinDate">
+              -
+              <input type="date" class="form-field" formControlName="inputMaxDate">
+            </label>          
+          </div>
+          <div class="filter-gpa">
+            <label>
+              Filter by GPA:              
+            </label>
+            <div>
+              <input id="isgpa" type="range" step="1" min="-1" max="5" formControlName="inputGPA"/>
+            </div>                             
+          </div>
+        </div>
+      </form>
+    </div>
+    <app-setting-table [data] = "data"></app-setting-table>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+          <tr>
+              <th (click) = "_setting?.isSort('firstName')">First Name</th>
+              <th (click) = "_setting?.isSort('lastName')">Last Name</th>
+              <th (click) = "_setting?.isSort('middleName')">Middle Name</th>
+              <th (click) = "_setting?.isSort('birthday')">Birthday</th>
+              <th (click) = "_setting?.isSort('GPA')">GPA</th>
+              <th class="del"></th>
+              <th class="del"></th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let students of isFilter(); let i = index" [ngClass] = "{'isredrow': students.GPA < 3 && _setting?.isRed, 'isgreenrow': _setting?.searchStudent?.includes(students.id)}">
+              <td>{{students.name}}</td>
+              <td>{{students.surname}}</td>
+              <td>{{students.patronymic}}</td>
+              <td>{{students.birthday}}</td>
+              <td>{{students.GPA}}</td>
+              <td>
+                <button class="button" type="button" (click) = "editShowPopUp(i)" >Edit</button>
+                <div class="editPopUp" [ngClass] = "students.show ? 'visible' : 'invisible'">
+                  <form novalidate [formGroup] = "editStudentForm" (ngSubmit) = "onSubmit()">
+                    <div class="editform-container">
+                      <div formGroupName = "student" class="form-group">
+                        <div>
+                          <input type="text" class="form-fields" formControlName="name">
+                          <div class="warnings">
+                            <p *ngIf="editStudentForm.get('student.name')?.touched &&
+                            editStudentForm.get('student.name')?.errors?.['required']" class="error">Name is required</p>
+                            <p *ngIf="editStudentForm.get('student.name')?.touched &&
+                            editStudentForm.get('student.name')?.errors?.['minlength']" class="error">Must be atleast 3 characters</p>
+                            <p *ngIf="editStudentForm.get('student.name')?.touched &&
+                            editStudentForm.get('student.name')?.errors?.['maxlength']" class="error">Must not exceed 12 characters</p>
+                            <p *ngIf="editStudentForm.get('student.name')?.touched &&
+                            editStudentForm.get('student.name')?.errors?.['pattern']" class="error">Must be only englisch/russian letters</p>
+                            <p *ngIf="editStudentForm.get('student.name')?.touched &&
+                            editStudentForm.get('student')?.errors?.['invalidSurname']" class="error">The name duplicates the surname</p>
+                            <p *ngIf="editStudentForm.get('student.name')?.touched &&
+                            editStudentForm.get('student')?.errors?.['invalidPatronymic']" class="error">The name duplicates the patronymic</p>
+                          </div>
+                        </div>
+                        <div>
+                          <input type="text" class="form-fields" formControlName="surname">
+                          <div class="warnings">
+                            <p *ngIf="editStudentForm.get('student.surname')?.touched &&
+                            editStudentForm.get('student.surname')?.errors?.['required']" class="error">Surname is required</p>
+                            <p *ngIf="editStudentForm.get('student.surname')?.touched &&
+                            editStudentForm.get('student.surname')?.errors?.['minlength']" class="error">Must be atleast 3 characters</p>
+                            <p *ngIf="editStudentForm.get('student.surname')?.touched &&
+                            editStudentForm.get('student.surname')?.errors?.['maxlength']" class="error">Must not exceed 12 characters</p>
+                            <p *ngIf="editStudentForm.get('student.surname')?.touched &&
+                            editStudentForm.get('student.surname')?.errors?.['pattern']" class="error">Must be only englisch/russian letters</p>
+                          </div>
+                        </div>
+                        <div>
+                          <input type="text" class="form-fields" formControlName="patronymic">
+                          <div class="warnings">
+                            <p *ngIf="editStudentForm.get('student.patronymic')?.touched &&
+                            editStudentForm.get('student.patronymic')?.errors?.['required']" class="error">Patronymic is required</p>
+                            <p *ngIf="editStudentForm.get('student.patronymic')?.touched &&
+                            editStudentForm.get('student.patronymic')?.errors?.['minlength']" class="error">Must be atleast 3 characters</p>
+                            <p *ngIf="editStudentForm.get('student.patronymic')?.touched &&
+                            editStudentForm.get('student.patronymic')?.errors?.['maxlength']" class="error">Must not exceed 12 characters</p>
+                            <p *ngIf="editStudentForm.get('student.patronymic')?.touched &&
+                            editStudentForm.get('student.patronymic')?.errors?.['pattern']" class="error">Must be only englisch/russian letters</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-birthdays"> 
+                        <div>
+                          <input type="date" class="form-days" formControlName="birthday">
+                          <div class="warnings">
+                            <p *ngIf="editStudentForm.get('birthday')?.touched &&
+                            editStudentForm.get('birthday')?.errors?.['required']" class="error">Birthday is required</p>
+                            <p *ngIf="editStudentForm.get('birthday')?.touched &&
+                            editStudentForm.get('birthday')?.errors?.['invalidAge']" class="error">Must be atleast 10 years old</p>
+                          </div>
+                        </div>  
+                        <div>
+                          <input type="number" min="0" max="5" step="0.1" class="form-gpas" formControlName="GPA">
+                          <div class="warnings">
+                            <p *ngIf="editStudentForm.get('GPA')?.touched &&
+                            editStudentForm.get('GPA')?.errors?.['required']" class="error">GPA is required</p> 
+                          </div>
+                        </div>
+                        <button class="btn-edit" type="button" (click)="editSubAndClose(i)" [disabled] = "editStudentForm.invalid">Edit</button>
+                        <button class="btn-edit" type="button" (click)="editClosePopUp(i)">Cancel</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </td>
+              <td>
+                <button class="button" type="button" (click) = "_setting?.showPopUp(i)" >Delete</button>
+                <div class="popUp" [ngClass] = "students.delete ? 'visible' : 'invisible'">
+                  <p>Are you sure that you want to remove these items?</p>
+                  <div>
+                    <button type="button" (click)="_setting?.isDeleteStudent(i)">Yes</button>
+                    <button type="button" (click)="_setting?.closePopUp(i)">No</button>
+                  </div>
+                </div>
+              </td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

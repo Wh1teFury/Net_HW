@@ -1,0 +1,14 @@
+
+<div class="search-wrap">
+  <div>
+    <label>Search:</label>
+    <input type="text" class="form-fields" [(ngModel)] ="textInput" (keyup)="isSearch(textInput)">
+  </div>
+  <div class="check-wrap" >
+    <label>
+      GPA is less than 3
+      <input type="checkbox" class="real-checkbox" [(ngModel)]="isRed"/>
+      <span class="custom-checkbox"></span>
+    </label>            
+  </div>
+</div>
