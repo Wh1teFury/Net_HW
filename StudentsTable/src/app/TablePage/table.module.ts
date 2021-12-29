@@ -6,8 +6,6 @@ import { TableComponent } from "../TablePage/table/table.component";
 import { AddStudentsComponent } from "../TablePage/add-students/add-students.component";
 import { DropdownDirective, HighlightDirective } from "../TablePage/main.derective";
 import { AgePipe, EmojiPipe } from "./main.pipes";
-// import { CapitalizeWordPipe, MrMrsPipe } from "./table/pipes";
-
 
 @NgModule({
   declarations: [
