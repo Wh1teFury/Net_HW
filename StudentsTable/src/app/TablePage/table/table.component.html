@@ -1,0 +1,87 @@
+<div class="heading">
+  <h1>Table Students</h1> 
+  <div>
+    Add Students:
+  </div>
+</div>
+<div class="add-wrap">   
+  <app-add-students></app-add-students>
+  <div class="btn-add" [ngClass] = "show ? 'invisible' : 'visible'">
+    <button class="button" type="submit" (click) = '_addStudent?.onSubmit()' [disabled] = "_addStudent?.studentForm?.invalid">Add</button>
+  </div>
+  <div class="btn-edit" [ngClass] = "showEdit ? 'visible' : 'invisible'">
+    <button class="button" type="submit" (click) = 'editSubmit()' [disabled] = "_addStudent?.studentForm?.invalid">Edit</button>
+    <button class="button-cnl" type="button" (click) = 'editClosePopUp()'>Cancel</button>
+  </div>
+</div>
+<button type="button" appDropdown class="btn-dd">Settings</button>
+<div class="dropdown">
+  <div class="filter-table">
+    <div>
+      <label>Filter by date:
+        <input type="date" class="form-field" [(ngModel)]="inputMinDate">
+        -
+        <input type="date" class="form-field" [(ngModel)]="inputMaxDate">
+      </label>          
+    </div>
+    <div class="filter-gpa">
+      <label>
+        Filter by GPA:              
+      </label>
+      <div>
+        <input id="isgpa" type="range" step="1" min="-1" max="5" [(ngModel)]="inputGPA"/>
+      </div>                             
+    </div>
+  </div>
+  <div class="search-wrap">
+    <div>
+      <label>Search:</label>
+      <input type="text" class="form-fields" [(ngModel)] ="textInput" (keyup)="isSearch(textInput)">
+    </div>
+    <div class="check-wrap" >
+      <label>
+        GPA is less than 3
+        <input type="checkbox" class="real-checkbox" [(ngModel)]="isRed"/>
+        <span class="custom-checkbox"></span>
+      </label>            
+    </div>
+  </div>
+</div>
+
+<div class="table-wrap">
+  <table>
+    <thead>
+        <tr>
+            <th (click) = 'isSort("firstName")'>First Name</th>
+            <th (click) = 'isSort("lastName")'>Last Name</th>
+            <th (click) = 'isSort("middleName")'>Middle Name</th>
+            <th (click) = 'isSort("birthday")'>Birthday</th>
+            <th (click) = 'isSort("GPA")'>GPA</th>
+            <th class="last-clmn"></th>
+            <th class="last-clmn"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let students of isFilter(inputMinDate, inputMaxDate, inputGPA); let i = index" appHighlight [ngClass] = "{'isredrow': students.GPA < 3 && isRed,
+                                                              'isgreenrow': searchStudent.includes(students.id)}">
+            <td >{{students.name}}</td>
+            <td>{{students.surname}}</td>
+            <td>{{students.patronymic}}</td>
+            <td>{{students.birthday | Age}}</td>
+            <td class="emoji-wrap"><div [innerHTML]="students.GPA | Emoji"></div></td>
+            <td class="last-clmn"><button type="button" class="table-btn" (click) = "editShowPopUp(i)">Edit</button></td>
+            <td class="last-clmn">
+              <button class="table-btn" (click) = 'showPopUp(i)'>Delete</button>
+              <div class="popUp" [ngClass] = "students.delete ? 'visible' : 'invisible'">
+                <p>Are you sure that you want to remove these items?</p>
+                <div>
+                  <button type="button" (click)="isDeleteStudent(i)">Yes</button>
+                  <button type="button" (click)="closePopUp(i)">No</button>
+                </div>
+              </div>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+</div>
+

@@ -1,0 +1,70 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.form-container {
+  display: flex;
+  justify-content: center;
+}
+.form-group {
+  display: flex;
+}
+.form-group div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.form-group div .warning {
+  height: 40px;
+  align-items: center;
+}
+.form-birthday {
+  display: flex;
+}
+.form-birthday div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.form-birthday div .form-day {
+  border-radius: 10px;
+  border: 1px solid #eee;
+  background-color: #fafafa;
+  width: 190px;
+  margin-left: 20px;
+  padding: 5px;
+  line-height: 24px;
+  font-size: 18px;
+  text-align: center;
+}
+.form-birthday div .form-gpa {
+  border-radius: 10px;
+  border: 1px solid #eee;
+  background-color: #fafafa;
+  width: 100px;
+  margin-left: 25px;
+  padding: 6px;
+  line-height: 24px;
+  font-size: 18px;
+  text-align: center;
+}
+.form-birthday div .warning {
+  align-items: center;
+}
+.form-field {
+  border-radius: 10px;
+  border: 1px solid #eee;
+  background-color: #fafafa;
+  width: 186px;
+  margin-right: 1px;
+  padding: 6px;
+  line-height: 24px;
+  font-size: 18px;
+  text-align: center;
+}
+.error {
+  color: red;
+  font-size: small;
+}
