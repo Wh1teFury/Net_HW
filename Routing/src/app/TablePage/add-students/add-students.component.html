@@ -1,0 +1,80 @@
+<div class="content">  
+  <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+    <div class="form-container">
+      <div formGroupName = "student" class="form-group">
+        <div>
+          <label for="">Name</label>
+          <input type="text" class="form-field" formControlName="name">
+          <div class="warning">
+            <p *ngIf="studentForm.get('student.name')?.touched &&
+              studentForm.get('student.name')?.errors?.['required']" class="error">Name is required</p>
+            <p *ngIf="studentForm.get('student.name')?.touched &&
+              studentForm.get('student.name')?.errors?.['minlength']" class="error">Must be atleast 3 characters</p>
+            <p *ngIf="studentForm.get('student.name')?.touched &&
+              studentForm.get('student.name')?.errors?.['maxlength']" class="error">Must not exceed 12 characters</p>
+            <p *ngIf="studentForm.get('student.name')?.touched &&
+              studentForm.get('student.name')?.errors?.['pattern']" class="error">Must be only englisch/russian letters</p>
+            <p *ngIf="studentForm.get('student.name')?.touched &&
+              studentForm.get('student')?.errors?.['invalidSurname']" class="error">The name duplicates the surname</p>
+            <p *ngIf="studentForm.get('student.name')?.touched &&
+              studentForm.get('student')?.errors?.['invalidPatronymic']" class="error">The name duplicates the patronymic</p>
+          </div>
+        </div>
+        <div>
+          <label for="">Surname</label>
+          <input type="text" class="form-field" formControlName="surname">
+          <div class="warning">
+            <p *ngIf="studentForm.get('student.surname')?.touched &&
+              studentForm.get('student.surname')?.errors?.['required']" class="error">Surname is required</p>
+            <p *ngIf="studentForm.get('student.surname')?.touched &&
+              studentForm.get('student.surname')?.errors?.['minlength']" class="error">Must be atleast 3 characters</p>
+            <p *ngIf="studentForm.get('student.surname')?.touched &&
+              studentForm.get('student.surname')?.errors?.['maxlength']" class="error">Must not exceed 12 characters</p>
+            <p *ngIf="studentForm.get('student.surname')?.touched &&
+              studentForm.get('student.surname')?.errors?.['pattern']" class="error">Must be only englisch/russian letters</p>
+          </div>
+        </div>
+        <div>
+          <label for="">Patronymic</label>
+          <input type="text" class="form-field" formControlName="patronymic">
+          <div class="warning">
+            <p *ngIf="studentForm.get('student.patronymic')?.touched &&
+              studentForm.get('student.patronymic')?.errors?.['required']" class="error">Patronymic is required</p>
+            <p *ngIf="studentForm.get('student.patronymic')?.touched &&
+              studentForm.get('student.patronymic')?.errors?.['minlength']" class="error">Must be atleast 3 characters</p>
+            <p *ngIf="studentForm.get('student.patronymic')?.touched &&
+              studentForm.get('student.patronymic')?.errors?.['maxlength']" class="error">Must not exceed 12 characters</p>
+            <p *ngIf="studentForm.get('student.patronymic')?.touched &&
+              studentForm.get('student.patronymic')?.errors?.['pattern']" class="error">Must be only englisch/russian letters</p>
+          </div>
+        </div>
+      </div>
+      <div class="form-birthday"> 
+        <div>
+          <label for="">Birthday</label>
+          <input type="date" class="form-day" formControlName="birthday">
+          <div class="warning">
+            <p *ngIf="studentForm.get('birthday')?.touched &&
+              studentForm.get('birthday')?.errors?.['required']" class="error">Birthday is required</p>
+            <p *ngIf="studentForm.get('birthday')?.touched &&
+              studentForm.get('birthday')?.errors?.['invalidAge']" class="error">Must be atleast 10 years old</p>
+          </div>
+        </div>  
+        <div>
+          <label for="">GPA</label>
+          <input type="number" min="0" max="5" step="0.1" class="form-gpa" formControlName="GPA">
+          <div class="warning">
+            <p *ngIf="studentForm.get('GPA')?.touched &&
+              studentForm.get('GPA')?.errors?.['required']" class="error">GPA is required</p> 
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </form>
+  <div class="btn-wrap">
+    <button type="submit" (click)="onSubmit()" [disabled] = "studentForm.invalid" class="buttons">Add</button>
+    <button type="submit" (click)="editSubmit()" [disabled] = "studentForm.invalid" class="buttons">Update</button>
+    <button type="submit" [routerLink]="[ '/table']" class="button-cnl">Cancel</button>
+  </div>
+</div>

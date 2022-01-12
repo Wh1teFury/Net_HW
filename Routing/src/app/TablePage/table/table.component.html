@@ -1,0 +1,80 @@
+<div class="heading">
+  <h1>Table Students</h1> 
+</div>
+<div class="add-wrap">
+  <button type="button"  routerLink="/table/add" >Add Student</button>
+</div>
+<router-outlet></router-outlet>
+<button type="button" appDropdown class="btn-dd">Settings</button>
+<div class="dropdown">
+  <div class="filter-table">
+    <div>
+      <label>Filter by date:
+        <input type="date" class="form-field" [(ngModel)]="inputMinDate">
+        -
+        <input type="date" class="form-field" [(ngModel)]="inputMaxDate">
+      </label>          
+    </div>
+    <div class="filter-gpa">
+      <label>
+        Filter by GPA:              
+      </label>
+      <div>
+        <input id="isgpa" type="range" step="1" min="-1" max="5" [(ngModel)]="inputGPA"/>
+      </div>                             
+    </div>
+  </div>
+  <div class="search-wrap">
+    <div>
+      <label>Search:</label>
+      <input type="text" class="form-fields" [(ngModel)] ="textInput" (keyup)="isSearch(textInput)">
+    </div>
+    <div class="check-wrap" >
+      <label>
+        GPA is less than 3
+        <input type="checkbox" class="real-checkbox" [(ngModel)]="isRed"/>
+        <span class="custom-checkbox"></span>
+      </label>            
+    </div>
+  </div>
+</div>
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th (click) = 'isSort("firstName")'>First Name</th>
+        <th (click) = 'isSort("lastName")'>Last Name</th>
+        <th (click) = 'isSort("middleName")'>Middle Name</th>
+        <th (click) = 'isSort("birthday")'>Birthday</th>
+        <th (click) = 'isSort("GPA")'>GPA</th>
+        <th class="last-clmn"></th>
+        <th class="last-clmn"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of isFilter(inputMinDate, inputMaxDate, inputGPA); let i = index" [ngClass] = "{'isredrow': student.GPA < 3 && isRed,
+                                                                                                              'isgreenrow': searchStudent.includes(student.id)}">
+        <td>{{student.name}}</td>
+        <td>{{student.surname}}</td>
+        <td>{{student.patronymic}}</td>
+        <td>{{student.birthday | Age}}</td>
+        <td class="emoji-wrap"><div [innerHTML]="student.GPA | Emoji"></div></td>
+        <td class="last-clmn">
+          <button type="button" class="table-btn" routerLink="/table/edit/{{student.id}}" >Edit</button>            
+        </td>
+        <td class="last-clmn">
+          <button type="button" class="table-btn" (click)="showPopUp(i)">Delete</button>
+          <div class="popUp" [ngClass] = "student.delete ? 'visible' : 'invisible'">
+            <p>Are you sure that you want to remove these items?</p>
+            <div>
+              <button type="button" (click)="delete(student.id)">Yes</button>
+              <button type="button" (click)="closePopUp(i)">No</button>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+

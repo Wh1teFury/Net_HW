@@ -1,0 +1,61 @@
+{
+  "students": [
+    {
+      "name": "Тимофей",
+      "surname": "Афанасьев",
+      "patronymic": "Филатович",
+      "birthday": "09.01.1996",
+      "GPA": 4.2,
+      "delete": false,
+      "id": 4
+    },
+    {
+      "id": 5,
+      "name": "Борис",
+      "surname": "Журавлев",
+      "patronymic": "Тимофеевич",
+      "birthday": "18.03.1991",
+      "GPA": 3.5,
+      "delete": false,
+      "show": false
+    },
+    {
+      "id": 6,
+      "name": "Игнатий",
+      "surname": "Носков",
+      "patronymic": "Андреевич",
+      "birthday": "29.07.1992",
+      "GPA": 4.1,
+      "delete": false,
+      "show": false
+    },
+    {
+      "id": 7,
+      "name": "Игорь",
+      "surname": "Гуляев",
+      "patronymic": "Васильевич",
+      "birthday": "05.05.1993",
+      "GPA": 4.8,
+      "delete": false,
+      "show": false
+    },
+    {
+      "id": 8,
+      "name": "Нинель",
+      "surname": "Авдеев",
+      "patronymic": "Михайлович",
+      "birthday": "07.04.1995",
+      "GPA": 3.9,
+      "delete": false,
+      "show": false
+    },
+    {
+      "name": "Тимофей",
+      "surname": "Афанасьев",
+      "patronymic": "Филатович",
+      "birthday": "09.01.1996",
+      "GPA": 5,
+      "id": 9
+    }
+  ]
+}
