@@ -1,0 +1,6 @@
+<p>widget works!</p>
+<app-ui-student (create)="addStudent($event)"></app-ui-student>
+<app-ui-students-list [studentList]="studentList$ | async"
+                      (delete)="onDelete($event)"
+                      (edit)="onEdit($event)"
+></app-ui-students-list>

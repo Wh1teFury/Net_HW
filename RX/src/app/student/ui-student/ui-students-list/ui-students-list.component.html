@@ -1,0 +1,7 @@
+<ul>
+  <li *ngFor="let students of studentList">
+    <app-ui-student-add [students]="students" (delete)="onDelete(students!.id)"
+    ></app-ui-student-add>
+    <app-ui-student-edit [students]="students" (edit)="onEdit($event, students!.id)"></app-ui-student-edit>
+  </li>
+</ul>

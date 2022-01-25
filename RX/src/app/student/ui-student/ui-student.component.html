@@ -1,0 +1,7 @@
+<h2>Student</h2>
+<form>
+  <input type="text" [(ngModel)]="newName" [ngModelOptions]="{standalone: true}">
+  <input type="text" [(ngModel)]="newSurname" [ngModelOptions]="{standalone: true}">
+  <button type="submit" (click)="addStudent()" [disabled]="!newName && !newSurname">add</button>
+</form>
+
